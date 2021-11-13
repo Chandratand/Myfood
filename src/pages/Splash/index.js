@@ -3,9 +3,11 @@ import {StyleSheet, Text, View} from 'react-native';
 import {ILLogo} from '../../assets';
 import {colors} from '.././../utils';
 
-const Splash = () => {
+const Splash = ({navigation}) => {
   useEffect(() => {
-    setTimeout(() => {}, 3000);
+    setTimeout(() => {
+      navigation.replace('Login');
+    }, 3000);
   });
   return (
     <View style={styles.page}>
