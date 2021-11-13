@@ -3,11 +3,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import {Splash} from './pages';
 
 const App = () => {
-  return (
-    <View>
-      <Splash />
-    </View>
-  );
+  return <Splash />;
 };
 
 export default App;
