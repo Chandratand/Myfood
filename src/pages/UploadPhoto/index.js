@@ -4,7 +4,7 @@ import {IconAddPhoto, ILNullPhoto} from '../../assets';
 import {Button, Gap, Header, Link} from '../../components';
 import {colors, fonts} from '../../utils';
 
-const UploadPhoto = () => {
+const UploadPhoto = ({navigation}) => {
   return (
     <View style={styles.page}>
       <Header title="Upload Photo" />
@@ -17,7 +17,10 @@ const UploadPhoto = () => {
           <Text style={styles.name}>Shayna Melinda</Text>
           <Text style={styles.address}>Jalan Thamrin Nomor 88</Text>
         </View>
-        <Button title="Upload and Continue" />
+        <Button
+          title="Upload and Continue"
+          onPress={() => navigation.replace('MainApp')}
+        />
         <Gap height={30} />
         <Link title="Skip for this" align="center" />
       </View>
