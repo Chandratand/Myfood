@@ -1,14 +1,16 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Gap} from '../..';
 import {IconBackDark} from '../../../assets';
 import {colors, fonts} from '../../../utils';
 
-const Header = () => {
+const Header = ({title, onPress}) => {
   return (
     <View style={styles.container}>
-      <IconBackDark />
-      <Text style={styles.title}>Daftar Akun</Text>
+      <TouchableOpacity>
+        <IconBackDark onPress={onPress} />
+      </TouchableOpacity>
+      <Text style={styles.title}>{title}</Text>
       <Gap width={24} />
     </View>
   );

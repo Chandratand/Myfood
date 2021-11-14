@@ -3,10 +3,10 @@ import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import {Button, Gap, Header, Input} from '../../components';
 import {colors} from '../../utils';
 
-const Register = () => {
+const Register = ({navigation}) => {
   return (
     <View style={styles.page}>
-      <Header />
+      <Header title="Daftar Akun" onPress={() => navigation.goBack()} />
       <View style={styles.content}>
         <ScrollView showsVerticalScrollIndicator={false}>
           <Input label="Full Name" />
@@ -17,7 +17,10 @@ const Register = () => {
           <Gap height={24} />
           <Input label="Password" />
           <Gap height={40} />
-          <Button title="Sign Up" />
+          <Button
+            title="Sign Up"
+            onPress={() => navigation.navigate('UploadPhoto')}
+          />
         </ScrollView>
       </View>
     </View>

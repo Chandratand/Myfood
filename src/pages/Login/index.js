@@ -22,7 +22,7 @@ const Login = ({navigation}) => {
           title="Create New Account"
           size={16}
           align="center"
-          onPress={() => navigation.replace('Register')}
+          onPress={() => navigation.navigate('Register')}
         />
       </ScrollView>
     </View>
