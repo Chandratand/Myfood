@@ -4,5 +4,6 @@ import Link from './Link';
 import Gap from './Gap';
 import TabItem from './TabItem';
 import Rate from './Rate';
+import List from './List';
 
-export {Button, Input, Link, Gap, TabItem, Rate};
+export {Button, Input, Link, Gap, TabItem, Rate, List};

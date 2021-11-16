@@ -7,6 +7,11 @@ import IconMessagesActive from './ic-messages-active.svg';
 import IconProfile from './ic-profile.svg';
 import IconProfileActive from './ic-profile-active.svg';
 import IconRate from './ic-rate.svg';
+import IconRateUs from './ic-give-rate.svg';
+import IconEditProfile from './ic-edit-profile.svg';
+import IconLanguage from './ic-languages.svg';
+import IconHelp from './ic-help.svg';
+import IconNext from './ic-next.svg';
 
 export {
   IconBackDark,
@@ -18,4 +23,9 @@ export {
   IconProfile,
   IconProfileActive,
   IconRate,
+  IconRateUs,
+  IconEditProfile,
+  IconHelp,
+  IconLanguage,
+  IconNext,
 };

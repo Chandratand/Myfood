@@ -4,14 +4,16 @@ import {Gap} from '../../atoms';
 import {IconBackDark} from '../../../assets';
 import {colors, fonts} from '../../../utils';
 
-const Header = ({title, onPress}) => {
+const Header = ({title, onPress, icon}) => {
   return (
     <View style={styles.container}>
-      <TouchableOpacity>
-        <IconBackDark onPress={onPress} />
-      </TouchableOpacity>
+      {icon && (
+        <TouchableOpacity>
+          <IconBackDark onPress={onPress} />
+        </TouchableOpacity>
+      )}
       <Text style={styles.title}>{title}</Text>
-      <Gap width={24} />
+      {icon && <Gap width={24} />}
     </View>
   );
 };
