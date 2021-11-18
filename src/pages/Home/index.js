@@ -1,13 +1,7 @@
 import React from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
-import {DummyCard} from '../../assets';
-import {
-  Card,
-  Gap,
-  HomeProfile,
-  MenuCategory,
-  RatedMenu,
-} from '../../components';
+import {DummyCard, DummyMenu1} from '../../assets';
+import {Card, Gap, HomeProfile, List, MenuCategory} from '../../components';
 import {colors, fonts} from '../../utils';
 
 const Home = ({navigation}) => {
@@ -34,9 +28,27 @@ const Home = ({navigation}) => {
         <Gap height={30} />
         <Card card={DummyCard} />
         <Text style={styles.label}>Favorite Menu</Text>
-        <RatedMenu />
-        <RatedMenu />
-        <RatedMenu />
+        <List
+          image={DummyMenu1}
+          title="Nasi Goreng Special"
+          desc="Nasi Goreng special dengan telur"
+          price="Rp 30.000"
+          rate="5.0"
+        />
+        <List
+          image={DummyMenu1}
+          title="Nasi Goreng Special"
+          desc="Nasi Goreng special dengan telur"
+          price="Rp 30.000"
+          rate="5.0"
+        />
+        <List
+          image={DummyMenu1}
+          title="Nasi Goreng Special"
+          desc="Nasi Goreng special dengan telur"
+          price="Rp 30.000"
+          rate="5.0"
+        />
       </ScrollView>
     </View>
   );

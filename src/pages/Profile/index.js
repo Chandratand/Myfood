@@ -1,7 +1,7 @@
 import React from 'react';
-import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
 import {DummyUser} from '../../assets';
-import {Gap, Header, List, UserProfile} from '../../components';
+import {Gap, Header, MiniList, UserProfile} from '../../components';
 import {colors} from '../../utils';
 
 const Profile = () => {
@@ -15,25 +15,25 @@ const Profile = () => {
           address="Jalan Thamrin Nomor 88"
         />
         <Gap height={16} />
-        <List
+        <MiniList
           icon="edit-profile"
           name="Edit Profile"
           desc="Last updated yesterday"
           type="next"
         />
-        <List
+        <MiniList
           icon="language"
           name="language"
           desc="Available 12 languages"
           type="next"
         />
-        <List
+        <MiniList
           icon="rate-us"
           name="Give Us Rate"
           desc="On Google Play"
           type="next"
         />
-        <List
+        <MiniList
           icon="help"
           name="Sign Out"
           desc="Log out from this account"

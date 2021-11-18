@@ -1,26 +1,25 @@
 import React from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
-import {Rate, Gap} from '../..';
-import {DummyMenu1} from '../../../assets';
+import {Rate} from '../..';
 import {colors, fonts} from '../../../utils';
 
-const RatedMenu = () => {
+const List = ({image, title, desc, price, rate}) => {
   return (
     <View style={styles.container}>
-      <Image source={DummyMenu1} style={styles.image} />
+      <Image source={image} style={styles.image} />
       <View style={styles.wrapper}>
         <View style={styles.rateWrapper}>
-          <Text style={styles.title}>Nasi Goreng Spesial</Text>
-          <Rate rate="5.0" />
+          <Text style={styles.title}>{title}</Text>
+          {rate && <Rate rate={rate} />}
         </View>
-        <Text style={styles.desc}>Nasi goreng spesial dengan ayam</Text>
-        <Text style={styles.price}>Rp 30.000</Text>
+        <Text style={styles.desc}>{desc}</Text>
+        <Text style={styles.price}>{price}</Text>
       </View>
     </View>
   );
 };
 
-export default RatedMenu;
+export default List;
 
 const styles = StyleSheet.create({
   container: {

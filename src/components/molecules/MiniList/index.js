@@ -6,11 +6,10 @@ import {
   IconLanguage,
   IconNext,
   IconRateUs,
-  IconRateUS,
 } from '../../../assets';
 import {colors, fonts} from '../../../utils';
 
-const List = ({icon, name, desc, type}) => {
+const MiniList = ({icon, name, desc, type}) => {
   const Icon = () => {
     if (icon === 'edit-profile') {
       return <IconEditProfile />;
@@ -38,7 +37,7 @@ const List = ({icon, name, desc, type}) => {
   );
 };
 
-export default List;
+export default MiniList;
 
 const styles = StyleSheet.create({
   container: {
