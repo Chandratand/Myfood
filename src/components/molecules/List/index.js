@@ -1,11 +1,11 @@
 import React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Rate} from '../..';
 import {colors, fonts} from '../../../utils';
 
-const List = ({image, title, desc, price, rate}) => {
+const List = ({image, title, desc, price, rate, onPress}) => {
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       <Image source={image} style={styles.image} />
       <View style={styles.wrapper}>
         <View style={styles.rateWrapper}>
@@ -15,7 +15,7 @@ const List = ({image, title, desc, price, rate}) => {
         <Text style={styles.desc}>{desc}</Text>
         <Text style={styles.price}>{price}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

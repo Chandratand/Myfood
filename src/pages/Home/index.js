@@ -1,6 +1,6 @@
 import React from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
-import {DummyCard, DummyMenu1} from '../../assets';
+import {DummyCard, DummyMenu1, DummyMenu2, DummyMenu3} from '../../assets';
 import {Card, Gap, HomeProfile, List, MenuCategory} from '../../components';
 import {colors, fonts} from '../../utils';
 
@@ -15,15 +15,15 @@ const Home = ({navigation}) => {
         </Text>
         <Gap height={16} />
         <View style={styles.category}>
-          <MenuCategory />
-          <MenuCategory />
-          <MenuCategory />
+          <MenuCategory category="nasi" />
+          <MenuCategory category="mie" />
+          <MenuCategory category="fastfood" />
         </View>
         <Gap height={10} />
         <View style={styles.category}>
-          <MenuCategory />
-          <MenuCategory />
-          <MenuCategory />
+          <MenuCategory category="tea and coffee" />
+          <MenuCategory category="juice and soda" />
+          <MenuCategory category="dessert" />
         </View>
         <Gap height={30} />
         <Card card={DummyCard} />
@@ -36,14 +36,14 @@ const Home = ({navigation}) => {
           rate="5.0"
         />
         <List
-          image={DummyMenu1}
+          image={DummyMenu2}
           title="Nasi Goreng Special"
           desc="Nasi Goreng special dengan telur"
           price="Rp 30.000"
           rate="5.0"
         />
         <List
-          image={DummyMenu1}
+          image={DummyMenu3}
           title="Nasi Goreng Special"
           desc="Nasi Goreng special dengan telur"
           price="Rp 30.000"
