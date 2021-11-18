@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import {Gap} from '..';
 import {IconRate} from '../../../assets';
 import {colors, fonts} from '../../../utils';
 
@@ -8,6 +9,7 @@ const Rate = ({rate}) => {
     <View style={styles.container}>
       <IconRate />
       <Text style={styles.text}>{rate}</Text>
+      <Gap width={14} />
     </View>
   );
 };

@@ -2,6 +2,7 @@ import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {
   Home,
+  Location,
   Login,
   Messages,
   Profile,
@@ -20,8 +21,8 @@ const MainApp = () => {
     <Tab.Navigator tabBar={props => <ButtomNavigator {...props} />}>
       <Tab.Screen name="Home" component={Home} options={{headerShown: false}} />
       <Tab.Screen
-        name="Messages"
-        component={Messages}
+        name="Location"
+        component={Location}
         options={{headerShown: false}}
       />
       <Tab.Screen

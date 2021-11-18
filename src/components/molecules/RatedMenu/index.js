@@ -1,6 +1,6 @@
 import React from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
-import {Rate} from '../..';
+import {Rate, Gap} from '../..';
 import {DummyMenu1} from '../../../assets';
 import {colors, fonts} from '../../../utils';
 
@@ -9,11 +9,13 @@ const RatedMenu = () => {
     <View style={styles.container}>
       <Image source={DummyMenu1} style={styles.image} />
       <View style={styles.wrapper}>
-        <Text style={styles.title}>Nasi Goreng Spesial</Text>
+        <View style={styles.rateWrapper}>
+          <Text style={styles.title}>Nasi Goreng Spesial</Text>
+          <Rate rate="5.0" />
+        </View>
         <Text style={styles.desc}>Nasi goreng spesial dengan ayam</Text>
         <Text style={styles.price}>Rp 30.000</Text>
       </View>
-      <Rate rate="5.0" style={styles.rate} />
     </View>
   );
 };
@@ -41,6 +43,11 @@ const styles = StyleSheet.create({
     fontFamily: fonts.primary[400],
     color: colors.text.primary,
     marginBottom: 3,
+    maxWidth: '85%',
+  },
+  rateWrapper: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   desc: {
     fontSize: 14,

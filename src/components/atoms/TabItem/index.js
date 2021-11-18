@@ -7,6 +7,8 @@ import {
   IconHomeActive,
   IconMessagesActive,
   IconProfileActive,
+  IconLocation,
+  IconLocationActive,
 } from '../../../assets';
 
 const TabItem = ({title, active, onPress, onLongPress}) => {
@@ -14,8 +16,8 @@ const TabItem = ({title, active, onPress, onLongPress}) => {
     if (title === 'Home') {
       return active ? <IconHomeActive /> : <IconHome />;
     }
-    if (title === 'Messages') {
-      return active ? <IconMessagesActive /> : <IconMessages />;
+    if (title === 'Location') {
+      return active ? <IconLocationActive /> : <IconLocation />;
     }
     if (title === 'Profile') {
       return active ? <IconProfileActive /> : <IconProfile />;

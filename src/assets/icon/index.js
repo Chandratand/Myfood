@@ -12,6 +12,8 @@ import IconEditProfile from './ic-edit-profile.svg';
 import IconLanguage from './ic-languages.svg';
 import IconHelp from './ic-help.svg';
 import IconNext from './ic-next.svg';
+import IconLocation from './ic-location.svg';
+import IconLocationActive from './ic-location-active.svg';
 
 export {
   IconBackDark,
@@ -28,4 +30,6 @@ export {
   IconHelp,
   IconLanguage,
   IconNext,
+  IconLocation,
+  IconLocationActive,
 };
