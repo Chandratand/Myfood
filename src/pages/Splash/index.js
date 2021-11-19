@@ -6,7 +6,7 @@ import {colors} from '.././../utils';
 const Splash = ({navigation}) => {
   useEffect(() => {
     setTimeout(() => {
-      navigation.replace('Login');
+      navigation.replace('GetStarted');
     }, 3000);
   });
   return (

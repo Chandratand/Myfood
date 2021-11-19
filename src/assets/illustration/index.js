@@ -7,6 +7,7 @@ import ILCatTeaAndCoffee from './cat-menu-tea-and-coffee.svg';
 import ILCatJuiceAndSoda from './cat-menu-juice-and-soda.svg';
 import ILCatDessert from './cat-menu-dessert.svg';
 import ILCafeBG from './cafe-background.png';
+import ILGetStarted from './get-started.png';
 
 export {
   ILLogo,
@@ -18,4 +19,5 @@ export {
   ILCatNasi,
   ILCatTeaAndCoffee,
   ILCafeBG,
+  ILGetStarted,
 };
