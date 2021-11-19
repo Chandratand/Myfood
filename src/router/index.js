@@ -9,6 +9,7 @@ import {
   Profile,
   Register,
   Splash,
+  UpdateProfile,
   UploadPhoto,
 } from '../pages';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -66,6 +67,11 @@ const Router = () => {
       <Stack.Screen
         name="Menu"
         component={Menu}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="UpdateProfile"
+        component={UpdateProfile}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

@@ -9,7 +9,7 @@ import {
 } from '../../../assets';
 import {colors, fonts} from '../../../utils';
 
-const MiniList = ({icon, name, desc, type}) => {
+const MiniList = ({icon, name, desc, type, onPress}) => {
   const Icon = () => {
     if (icon === 'edit-profile') {
       return <IconEditProfile />;
@@ -26,7 +26,7 @@ const MiniList = ({icon, name, desc, type}) => {
     return <IconEditProfile />;
   };
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       <Icon />
       <View style={styles.content}>
         <Text style={styles.name}>{name}</Text>

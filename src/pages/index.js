@@ -7,6 +7,7 @@ import Messages from './Messages';
 import Profile from './Profile';
 import Location from './Location';
 import Menu from './Menu';
+import UpdateProfile from './UpdateProfile';
 
 export {
   Splash,
@@ -18,4 +19,5 @@ export {
   Profile,
   Location,
   Menu,
+  UpdateProfile,
 };

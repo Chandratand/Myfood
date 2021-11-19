@@ -1,10 +1,11 @@
+import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
 import {DummyUser} from '../../assets';
 import {Gap, Header, MiniList, UserProfile} from '../../components';
 import {colors} from '../../utils';
 
-const Profile = () => {
+const Profile = ({navigation}) => {
   return (
     <View style={styles.page}>
       <Header title="Profile" />
@@ -20,6 +21,7 @@ const Profile = () => {
           name="Edit Profile"
           desc="Last updated yesterday"
           type="next"
+          onPress={() => navigation.navigate('UpdateProfile')}
         />
         <MiniList
           icon="language"
