@@ -1,8 +1,8 @@
 import React from 'react';
-import {Text, ImageBackground, StyleSheet, View} from 'react-native';
+import {ImageBackground, StyleSheet, Text, View} from 'react-native';
 import {DummyCafe1, DummyCafe2, DummyCafe3, ILCafeBG} from '../../assets';
-import {fonts, colors} from '../../utils';
 import {List} from '../../components';
+import {colors, fonts} from '../../utils';
 
 const Location = () => {
   return (
