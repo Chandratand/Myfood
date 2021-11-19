@@ -4,6 +4,7 @@ import {
   Home,
   Location,
   Login,
+  Menu,
   Messages,
   Profile,
   Register,
@@ -60,6 +61,11 @@ const Router = () => {
       <Stack.Screen
         name="MainApp"
         component={MainApp}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Menu"
+        component={Menu}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

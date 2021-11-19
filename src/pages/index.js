@@ -6,6 +6,7 @@ import Home from './Home';
 import Messages from './Messages';
 import Profile from './Profile';
 import Location from './Location';
+import Menu from './Menu';
 
 export {
   Splash,
@@ -16,4 +17,5 @@ export {
   Messages,
   Profile,
   Location,
+  Menu,
 };

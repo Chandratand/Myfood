@@ -14,6 +14,7 @@ import IconHelp from './ic-help.svg';
 import IconNext from './ic-next.svg';
 import IconLocation from './ic-location.svg';
 import IconLocationActive from './ic-location-active.svg';
+import IconBackLight from './ic-back-light.svg';
 
 export {
   IconBackDark,
@@ -32,4 +33,5 @@ export {
   IconNext,
   IconLocation,
   IconLocationActive,
+  IconBackLight,
 };

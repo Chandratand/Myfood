@@ -1,19 +1,18 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {Gap} from '../../atoms';
-import {IconBackDark} from '../../../assets';
+import {StyleSheet, Text, View} from 'react-native';
+import {Button, Gap} from '../..';
 import {colors, fonts} from '../../../utils';
 
-const Header = ({title, onPress, icon}) => {
+const Header = ({title, onPress, type}) => {
   return (
-    <View style={styles.container}>
-      {icon && (
-        <TouchableOpacity>
-          <IconBackDark onPress={onPress} />
-        </TouchableOpacity>
-      )}
-      <Text style={styles.title}>{title}</Text>
-      {icon && <Gap width={24} />}
+    <View style={styles.container(type)}>
+      <Button
+        type="icon-only"
+        icon={type === 'dark' ? 'back-light' : 'back-dark'}
+        onPress={onPress}
+      />
+      <Text style={styles.text(type)}>{title}</Text>
+      <Gap width={24} />
     </View>
   );
 };
@@ -21,17 +20,19 @@ const Header = ({title, onPress, icon}) => {
 export default Header;
 
 const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    paddingVertical: 30,
+  container: type => ({
     paddingHorizontal: 16,
-    backgroundColor: colors.white,
-  },
-  title: {
+    paddingVertical: 30,
+    backgroundColor: type === 'dark' ? colors.secondary : colors.white,
+    flexDirection: 'row',
+    alignItems: 'center',
+  }),
+  text: type => ({
     flex: 1,
     textAlign: 'center',
+    fontFamily: fonts.primary.normal,
     fontSize: 20,
-    fontFamily: fonts.primary[600],
-    color: colors.text.primary,
-  },
+    color: type === 'dark' ? colors.white : colors.text.primary,
+    textTransform: 'capitalize',
+  }),
 });

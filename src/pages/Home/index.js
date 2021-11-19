@@ -15,7 +15,10 @@ const Home = ({navigation}) => {
         </Text>
         <Gap height={16} />
         <View style={styles.category}>
-          <MenuCategory category="nasi" />
+          <MenuCategory
+            category="nasi"
+            onPress={() => navigation.navigate('Menu')}
+          />
           <MenuCategory category="mie" />
           <MenuCategory category="fastfood" />
         </View>
@@ -79,6 +82,5 @@ const styles = StyleSheet.create({
     fontFamily: fonts.primary[600],
     color: colors.text.primary,
     marginTop: 30,
-    marginBottom: 16,
   },
 });
