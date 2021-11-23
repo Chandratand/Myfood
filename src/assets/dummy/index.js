@@ -6,6 +6,7 @@ import DummyCard from './card.png';
 import DummyCafe1 from './cafe1.png';
 import DummyCafe2 from './cafe2.png';
 import DummyCafe3 from './cafe3.png';
+import DummyMenu4 from './menu4.png';
 
 export {
   DummyUser,
@@ -16,4 +17,5 @@ export {
   DummyCafe1,
   DummyCafe2,
   DummyCafe3,
+  DummyMenu4,
 };

@@ -15,6 +15,7 @@ const Menu = ({navigation}) => {
             desc="Nasi Goreng special dengan telur"
             price="Rp 30.000"
             rate="5.0"
+            onPress={() => navigation.navigate('Detail')}
           />
           <List
             image={DummyMenu1}

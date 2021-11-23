@@ -1,20 +1,20 @@
-import React from 'react';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import React from 'react';
+import {ButtomNavigator} from '../components';
 import {
+  Detail,
   GetStarted,
   Home,
   Location,
   Login,
   Menu,
-  Messages,
   Profile,
   Register,
   Splash,
   UpdateProfile,
   UploadPhoto,
 } from '../pages';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {ButtomNavigator} from '../components';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -39,7 +39,7 @@ const MainApp = () => {
 
 const Router = () => {
   return (
-    <Stack.Navigator initialRouteName="GetStarted">
+    <Stack.Navigator initialRouteName="Splash">
       <Stack.Screen
         name="Splash"
         component={Splash}
@@ -78,6 +78,11 @@ const Router = () => {
       <Stack.Screen
         name="UpdateProfile"
         component={UpdateProfile}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Detail"
+        component={Detail}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

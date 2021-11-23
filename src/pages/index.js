@@ -9,6 +9,7 @@ import Profile from './Profile';
 import Location from './Location';
 import Menu from './Menu';
 import UpdateProfile from './UpdateProfile';
+import Detail from './Detail';
 
 export {
   Splash,
@@ -22,4 +23,5 @@ export {
   Menu,
   UpdateProfile,
   GetStarted,
+  Detail,
 };

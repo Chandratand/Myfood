@@ -22,6 +22,7 @@ export const colors = {
   text: {
     primary: mainColors.dark1,
     secondary: mainColors.grey1,
+    tertiary: mainColors.orange1,
     menuInactive: mainColors.dark2,
     menuActive: mainColors.orange1,
   },

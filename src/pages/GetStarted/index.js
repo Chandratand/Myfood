@@ -22,7 +22,7 @@ const GetStarted = ({navigation}) => {
         <Button
           title="Sign In"
           type="secondary"
-          onPress={navigation.navigate('Login')}
+          onPress={() => navigation.navigate('Login')}
         />
       </View>
     </ImageBackground>
