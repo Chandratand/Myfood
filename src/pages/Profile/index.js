@@ -1,15 +1,15 @@
-import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
-import {ScrollView, StyleSheet, View} from 'react-native';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import {DummyUser} from '../../assets';
-import {Gap, Header, MiniList, UserProfile} from '../../components';
-import {colors} from '../../utils';
+import {Gap, MiniList, UserProfile} from '../../components';
+import {colors, fonts} from '../../utils';
 
 const Profile = ({navigation}) => {
   return (
     <View style={styles.page}>
-      <Header title="Profile" />
       <ScrollView showsVerticalScrollIndicator={false}>
+        <Text style={styles.title}>Profile</Text>
+        <Gap height={20} />
         <UserProfile
           photo={DummyUser}
           name="Shayna Melinda"
@@ -49,6 +49,15 @@ const Profile = ({navigation}) => {
 export default Profile;
 
 const styles = StyleSheet.create({
+  title: {
+    flex: 1,
+    textAlign: 'center',
+    fontFamily: fonts.primary.normal,
+    fontSize: 20,
+    color: colors.text.primary,
+    textTransform: 'capitalize',
+    paddingTop: 30,
+  },
   page: {
     backgroundColor: colors.white,
     flex: 1,
