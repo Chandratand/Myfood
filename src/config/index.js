@@ -1,3 +1,3 @@
-import Fire from './fire';
+import Fire from './Fire';
 
 export {Fire};
