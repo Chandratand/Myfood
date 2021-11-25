@@ -3,7 +3,7 @@ import {ScrollView, StyleSheet, View} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {Button, Gap, Header, Input} from '../../components';
 import {Fire} from '../../config';
-import {colors, useForm} from '../../utils';
+import {colors, showError, useForm} from '../../utils';
 
 const Register = ({navigation}) => {
   const [form, setForm] = useForm({
@@ -21,15 +21,16 @@ const Register = ({navigation}) => {
       .createUserWithEmailAndPassword(form.email, form.password)
       .then(success => {
         console.log('register success : ', success);
-        useForm('reset');
+        setForm('reset');
         dispatch({type: 'SET_LOADING', value: false});
+        navigation.navigate('UploadPhoto');
       })
       .catch(error => {
         const errorMessage = error.message;
+        showError(errorMessage);
         console.log('Error register : ', errorMessage);
         dispatch({type: 'SET_LOADING', value: false});
       });
-    // navigation.navigate('UploadPhoto');
   };
   return (
     <View style={styles.page}>
