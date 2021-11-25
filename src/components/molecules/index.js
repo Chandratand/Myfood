@@ -6,6 +6,7 @@ import Card from './Card';
 import UserProfile from './UserProfile';
 import MiniList from './MiniList';
 import List from './List';
+import Loading from './Loading';
 
 export {
   Header,
@@ -16,4 +17,5 @@ export {
   UserProfile,
   MiniList,
   List,
+  Loading,
 };
