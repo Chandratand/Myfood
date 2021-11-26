@@ -22,6 +22,14 @@ const Register = ({navigation}) => {
       .then(success => {
         console.log('register success : ', success);
         setForm('reset');
+        const data = {
+          fullName: form.fullName,
+          address: form.address,
+          email: form.email,
+        };
+        Fire.database()
+          .ref('users/' + success.user.uid + '/')
+          .set(data);
         dispatch({type: 'SET_LOADING', value: false});
         navigation.navigate('UploadPhoto');
       })
