@@ -18,6 +18,7 @@ const UploadPhoto = ({navigation}) => {
           <Text style={styles.address}>Jalan Thamrin Nomor 88</Text>
         </View>
         <Button
+          disable
           title="Upload and Continue"
           onPress={() => navigation.replace('MainApp')}
         />
