@@ -1,20 +1,35 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
-import {DummyUser} from '../../assets';
+import {DummyUser, ILNullPhoto} from '../../assets';
 import {Gap, MiniList, UserProfile} from '../../components';
-import {colors, fonts} from '../../utils';
+import {colors, fonts, getData} from '../../utils';
 
 const Profile = ({navigation}) => {
+  const [profile, setProfile] = useState({
+    fullName: '',
+    address: '',
+    photo: ILNullPhoto,
+  });
+
+  useEffect(() => {
+    getData('user').then(res => {
+      const data = res;
+      data.photo = {uri: res.photo};
+      setProfile(data);
+    });
+  });
   return (
     <View style={styles.page}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Text style={styles.title}>Profile</Text>
         <Gap height={20} />
-        <UserProfile
-          photo={DummyUser}
-          name="Shayna Melinda"
-          address="Jalan Thamrin Nomor 88"
-        />
+        {profile.fullName.length > 0 && (
+          <UserProfile
+            photo={profile.photo}
+            name={profile.fullName}
+            address={profile.address}
+          />
+        )}
         <Gap height={16} />
         <MiniList
           icon="edit-profile"
