@@ -6,7 +6,8 @@ import {colors, fonts} from '../../utils';
 import {launchImageLibrary} from 'react-native-image-picker';
 import {showError} from '../../utils';
 
-const UploadPhoto = ({navigation}) => {
+const UploadPhoto = ({navigation, route}) => {
+  const {fullName, address, email} = route.params;
   const [hasPhoto, setHasPhoto] = useState(false);
   const [photo, setPhoto] = useState(ILNullPhoto);
   const getImage = () => {
@@ -34,8 +35,8 @@ const UploadPhoto = ({navigation}) => {
             {hasPhoto && <IconRemovePhoto style={styles.addPhoto} />}
             {!hasPhoto && <IconAddPhoto style={styles.addPhoto} />}
           </TouchableOpacity>
-          <Text style={styles.name}>Shayna Melinda</Text>
-          <Text style={styles.address}>Jalan Thamrin Nomor 88</Text>
+          <Text style={styles.name}>{fullName}</Text>
+          <Text style={styles.address}>{address}</Text>
         </View>
         <Button
           disable={!hasPhoto}

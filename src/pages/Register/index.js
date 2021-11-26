@@ -34,7 +34,9 @@ const Register = ({navigation}) => {
         storeData('user', data);
 
         dispatch({type: 'SET_LOADING', value: false});
-        navigation.navigate('UploadPhoto');
+
+        navigation.navigate('UploadPhoto', data);
+
         console.log('register success : ', success);
       })
       .catch(error => {
