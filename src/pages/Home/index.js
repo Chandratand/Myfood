@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import {DummyCard, DummyMenu1, DummyMenu2, DummyMenu3} from '../../assets';
 import {Card, Gap, HomeProfile, List, MenuCategory} from '../../components';
-import {colors, fonts} from '../../utils';
+import {colors, fonts, getData} from '../../utils';
 
 const Home = ({navigation}) => {
   return (
