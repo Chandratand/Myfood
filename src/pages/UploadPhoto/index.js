@@ -1,24 +1,44 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {IconAddPhoto, ILNullPhoto} from '../../assets';
+import {IconAddPhoto, IconRemovePhoto, ILNullPhoto} from '../../assets';
 import {Button, Gap, Header, Link} from '../../components';
 import {colors, fonts} from '../../utils';
+import {launchImageLibrary} from 'react-native-image-picker';
+import {showError} from '../../utils';
 
 const UploadPhoto = ({navigation}) => {
+  const [hasPhoto, setHasPhoto] = useState(false);
+  const [photo, setPhoto] = useState(ILNullPhoto);
+  const getImage = () => {
+    launchImageLibrary(
+      {quality: 0.5, maxWidth: 200, maxHeight: 200, includeBase64: true},
+      response => {
+        console.log('response: ', response);
+        if (response.didCancel || response.error) {
+          showError('Oops anda tidak memilih fotonya');
+        } else {
+          const source = {uri: response.assets[0].uri};
+          setPhoto(source);
+          setHasPhoto(true);
+        }
+      },
+    );
+  };
   return (
     <View style={styles.page}>
       <Header title="Upload Photo" />
       <View style={styles.content}>
         <View style={styles.profile}>
-          <TouchableOpacity style={styles.avatarWrapper}>
-            <Image source={ILNullPhoto} style={styles.avatar} />
-            <IconAddPhoto style={styles.addPhoto} />
+          <TouchableOpacity style={styles.avatarWrapper} onPress={getImage}>
+            <Image source={photo} style={styles.avatar} />
+            {hasPhoto && <IconRemovePhoto style={styles.addPhoto} />}
+            {!hasPhoto && <IconAddPhoto style={styles.addPhoto} />}
           </TouchableOpacity>
           <Text style={styles.name}>Shayna Melinda</Text>
           <Text style={styles.address}>Jalan Thamrin Nomor 88</Text>
         </View>
         <Button
-          disable
+          disable={!hasPhoto}
           title="Upload and Continue"
           onPress={() => navigation.replace('MainApp')}
         />
