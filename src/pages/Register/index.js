@@ -3,7 +3,7 @@ import {ScrollView, StyleSheet, View} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {Button, Gap, Header, Input} from '../../components';
 import {Fire} from '../../config';
-import {colors, showError, useForm} from '../../utils';
+import {colors, showError, storeData, useForm} from '../../utils';
 
 const Register = ({navigation}) => {
   const [form, setForm] = useForm({
@@ -20,18 +20,22 @@ const Register = ({navigation}) => {
     Fire.auth()
       .createUserWithEmailAndPassword(form.email, form.password)
       .then(success => {
-        console.log('register success : ', success);
         setForm('reset');
         const data = {
           fullName: form.fullName,
           address: form.address,
           email: form.email,
         };
+
         Fire.database()
           .ref('users/' + success.user.uid + '/')
           .set(data);
+
+        storeData('user', data);
+
         dispatch({type: 'SET_LOADING', value: false});
         navigation.navigate('UploadPhoto');
+        console.log('register success : ', success);
       })
       .catch(error => {
         const errorMessage = error.message;
