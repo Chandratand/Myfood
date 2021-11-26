@@ -1,17 +1,24 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import {DummyCard, DummyMenu1, DummyMenu2, DummyMenu3} from '../../assets';
 import {Card, Gap, HomeProfile, List, MenuCategory} from '../../components';
 import {colors, fonts, getData} from '../../utils';
 
 const Home = ({navigation}) => {
+  const [fullName, setFullName] = useState('');
+  useEffect(() => {
+    getData('user').then(res => {
+      console.log('data user : ', res);
+      setFullName(res.fullName);
+    });
+  }, []);
   return (
     <View style={styles.page}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Gap height={30} />
         <HomeProfile onPress={() => navigation.navigate('Profile')} />
         <Text style={styles.welcome}>
-          Hai Shayna Meliana! Mau makan apa hari ini?
+          Hai {fullName}! Mau makan apa hari ini?
         </Text>
         <Gap height={16} />
         <View style={styles.category}>
