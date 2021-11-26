@@ -7,9 +7,11 @@ import {launchImageLibrary} from 'react-native-image-picker';
 import {showError} from '../../utils';
 
 const UploadPhoto = ({navigation, route}) => {
-  const {fullName, address, email} = route.params;
+  const {fullName, address, uid} = route.params;
   const [hasPhoto, setHasPhoto] = useState(false);
   const [photo, setPhoto] = useState(ILNullPhoto);
+  const [photoForDB, setPhotoForDB] = useState('');
+
   const getImage = () => {
     launchImageLibrary(
       {quality: 0.5, maxWidth: 200, maxHeight: 200, includeBase64: true},
@@ -18,13 +20,30 @@ const UploadPhoto = ({navigation, route}) => {
         if (response.didCancel || response.error) {
           showError('Oops anda tidak memilih fotonya');
         } else {
+          console.log('response GetImage: ', response);
           const source = {uri: response.assets[0].uri};
           setPhoto(source);
+          setPhotoForDB(
+            `data: ${response.assets[0].type};base64, ${response.assets[0].base64}`,
+          );
           setHasPhoto(true);
         }
       },
     );
   };
+
+  const uploadAndContinue = () => {
+    Fire.database()
+      .ref('users/' + uid + '/')
+      .update({photo: photoForDB});
+
+    const data = route.params;
+    data.photo = photoForDB;
+
+    storeData('user', data);
+    navigation.replace('MainApp');
+  };
+
   return (
     <View style={styles.page}>
       <Header title="Upload Photo" />
@@ -47,7 +66,7 @@ const UploadPhoto = ({navigation, route}) => {
         <Link
           title="Skip for this"
           align="center"
-          onPress={() => navigation.replace('MainApp')}
+          onPress={uploadAndContinue}
         />
       </View>
     </View>
