@@ -77,16 +77,16 @@ const Home = ({navigation}) => {
         <Gap height={30} />
         <Card card={DummyCard} />
         <Text style={styles.label}>Favorite Menu</Text>
-        {favoriteMenu.map(item => {
+        {favoriteMenu.map(menu => {
           return (
             <List
-              key={item.id}
-              image={{uri: item.image}}
-              title={item.title}
-              desc={item.desc}
-              price={item.price}
-              rate={item.rate}
-              onPress={() => navigation.navigate('Detail')}
+              key={menu.id}
+              image={{uri: menu.image}}
+              title={menu.title}
+              desc={menu.desc}
+              price={menu.price}
+              rate={menu.rate}
+              onPress={() => navigation.navigate('Detail', menu)}
             />
           );
         })}

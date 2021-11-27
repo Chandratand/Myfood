@@ -1,15 +1,15 @@
 import React from 'react';
 import {ImageBackground, StyleSheet, Text, View} from 'react-native';
-import {DummyMenu4} from '../../assets';
 import {Button, Gap, Rate} from '../../components';
 import {colors, fonts} from '../../utils';
 
-const Detail = ({navigation}) => {
+const Detail = ({navigation, route}) => {
+  const dataMenu = route.params;
   return (
     <View style={styles.page}>
       <View style={styles.imageWrapper}>
         <ImageBackground
-          source={DummyMenu4}
+          source={{uri: dataMenu.image}}
           style={styles.image}
           imageStyle={{borderRadius: 20}}>
           <Button
@@ -23,18 +23,12 @@ const Detail = ({navigation}) => {
       <View style={styles.container}>
         <View>
           <View style={styles.titleWrapper}>
-            <Text style={styles.title}>Nasi Goreng Special</Text>
+            <Text style={styles.title}>{dataMenu.title}</Text>
             <Gap width={5} />
-            <Rate rate="5.0" />
+            <Rate rate={dataMenu.rate} />
           </View>
-          <Text style={styles.price}>Rp20.000</Text>
-          <Text style={styles.desc}>
-            Lorem Ipsum is simply dummy text of the printing and ty setting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries, but also the leap into electronic typesetting
-          </Text>
+          <Text style={styles.price}>{dataMenu.price}</Text>
+          <Text style={styles.desc}>{dataMenu.full_desc}</Text>
         </View>
         <Button title="Pesan" />
       </View>
