@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {ImageBackground, StyleSheet, Text, View} from 'react-native';
-import {DummyCafe1, DummyCafe2, DummyCafe3, ILCafeBG} from '../../assets';
+import {ILCafeBG} from '../../assets';
 import {List} from '../../components';
-import {colors, fonts, showError} from '../../utils';
 import {Fire} from '../../config';
+import {colors, fonts, showError} from '../../utils';
 
 const Location = () => {
   const [location, setLocation] = useState([]);
@@ -20,7 +20,7 @@ const Location = () => {
       .catch(error => {
         showError(error.message);
       });
-  });
+  }, []);
 
   return (
     <View style={styles.page}>

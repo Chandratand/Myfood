@@ -8,12 +8,37 @@ import {Fire} from '../../config';
 const Home = ({navigation}) => {
   const [fullName, setFullName] = useState('');
   const [category, setCategory] = useState([]);
+  const [favoriteMenu, setFavoriteMenu] = useState([]);
   useEffect(() => {
+    getUserFullName();
+    getCategoryMenu();
+    getFavoriteMenu();
+  }, []);
+
+  const getFavoriteMenu = () => {
+    Fire.database()
+      .ref('menu/')
+      .orderByChild('rate')
+      .limitToLast(3)
+      .once('value')
+      .then(res => {
+        console.log('Favorite Menu : ', res.val());
+        if (res.val()) {
+          setFavoriteMenu(res.val());
+        }
+      })
+      .catch(error => {
+        showError(error.message);
+      });
+  };
+
+  const getUserFullName = () => {
     getData('user').then(res => {
       console.log('data user : ', res);
       setFullName(res.fullName);
     });
-
+  };
+  const getCategoryMenu = () => {
     //mengambil category_menu dari database
     Fire.database()
       .ref('category_menu/')
@@ -27,7 +52,8 @@ const Home = ({navigation}) => {
       .catch(error => {
         showError(error.message);
       });
-  }, []);
+  };
+
   return (
     <View style={styles.page}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -51,28 +77,19 @@ const Home = ({navigation}) => {
         <Gap height={30} />
         <Card card={DummyCard} />
         <Text style={styles.label}>Favorite Menu</Text>
-        <List
-          image={DummyMenu1}
-          title="Nasi Goreng Special"
-          desc="Nasi Goreng special dengan telur"
-          price="Rp 30.000"
-          rate="5.0"
-          onPress={() => navigation.navigate('Detail')}
-        />
-        <List
-          image={DummyMenu2}
-          title="Nasi Goreng Special"
-          desc="Nasi Goreng special dengan telur"
-          price="Rp 30.000"
-          rate="5.0"
-        />
-        <List
-          image={DummyMenu3}
-          title="Nasi Goreng Special"
-          desc="Nasi Goreng special dengan telur"
-          price="Rp 30.000"
-          rate="5.0"
-        />
+        {favoriteMenu.map(item => {
+          return (
+            <List
+              key={item.id}
+              image={{uri: item.image}}
+              title={item.title}
+              desc={item.desc}
+              price={item.price}
+              rate={item.rate}
+              onPress={() => navigation.navigate('Detail')}
+            />
+          );
+        })}
       </ScrollView>
     </View>
   );
