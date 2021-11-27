@@ -1,10 +1,27 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {ImageBackground, StyleSheet, Text, View} from 'react-native';
 import {DummyCafe1, DummyCafe2, DummyCafe3, ILCafeBG} from '../../assets';
 import {List} from '../../components';
-import {colors, fonts} from '../../utils';
+import {colors, fonts, showError} from '../../utils';
+import {Fire} from '../../config';
 
 const Location = () => {
+  const [location, setLocation] = useState([]);
+  useEffect(() => {
+    Fire.database()
+      .ref('location/')
+      .once('value')
+      .then(res => {
+        console.log('data : ', res.val());
+        if (res.val()) {
+          setLocation(res.val());
+        }
+      })
+      .catch(error => {
+        showError(error.message);
+      });
+  });
+
   return (
     <View style={styles.page}>
       <ImageBackground source={ILCafeBG} style={styles.background}>
@@ -12,21 +29,16 @@ const Location = () => {
         <Text style={styles.desc}>3 tersedia</Text>
       </ImageBackground>
       <View style={styles.content}>
-        <List
-          image={DummyCafe1}
-          title="Cemara Foodie Cafe"
-          desc="Jalan Asoka No 88 Cemara Asri, Medan"
-        />
-        <List
-          image={DummyCafe2}
-          title="Jakarta PIK Foddie Cafe"
-          desc="Jalan Asoka No 88 Cemara Asri, Medan"
-        />
-        <List
-          image={DummyCafe3}
-          title="Tanggerang Foddie Cafe"
-          desc="Jalan Asoka No 88 Cemara Asri, Medan"
-        />
+        {location.map(item => {
+          return (
+            <List
+              key={item.id}
+              image={{uri: item.image}}
+              title={item.cafe}
+              desc={item.address}
+            />
+          );
+        })}
       </View>
     </View>
   );
