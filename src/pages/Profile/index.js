@@ -17,7 +17,7 @@ const Profile = ({navigation}) => {
       data.photo = {uri: res.photo};
       setProfile(data);
     });
-  });
+  }, []);
   return (
     <View style={styles.page}>
       <ScrollView showsVerticalScrollIndicator={false}>
