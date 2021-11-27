@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
-import {DummyUser, ILNullPhoto} from '../../assets';
+import {ILNullPhoto} from '../../assets';
 import {Gap, MiniList, UserProfile} from '../../components';
-import {colors, fonts, getData} from '../../utils';
+import {Fire} from '../../config';
+import {colors, fonts, getData, showError} from '../../utils';
 
 const Profile = ({navigation}) => {
   const [profile, setProfile] = useState({
@@ -18,6 +19,18 @@ const Profile = ({navigation}) => {
       setProfile(data);
     });
   }, []);
+
+  const signOut = () => {
+    Fire.auth()
+      .signOut()
+      .then(() => {
+        console.log('succes Sign Out');
+        navigation.replace('GetStarted');
+      })
+      .catch(error => {
+        showError(error.message);
+      });
+  };
   return (
     <View style={styles.page}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -55,6 +68,7 @@ const Profile = ({navigation}) => {
           name="Sign Out"
           desc="Log out from this account"
           type="next"
+          onPress={signOut}
         />
       </ScrollView>
     </View>
