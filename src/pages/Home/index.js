@@ -3,14 +3,30 @@ import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import {DummyCard, DummyMenu1, DummyMenu2, DummyMenu3} from '../../assets';
 import {Card, Gap, HomeProfile, List, MenuCategory} from '../../components';
 import {colors, fonts, getData} from '../../utils';
+import {Fire} from '../../config';
 
 const Home = ({navigation}) => {
   const [fullName, setFullName] = useState('');
+  const [category, setCategory] = useState([]);
   useEffect(() => {
     getData('user').then(res => {
       console.log('data user : ', res);
       setFullName(res.fullName);
     });
+
+    //mengambil category_menu dari database
+    Fire.database()
+      .ref('category_menu/')
+      .once('value')
+      .then(res => {
+        console.log('data : ', res.val());
+        if (res.val()) {
+          setCategory(res.val());
+        }
+      })
+      .catch(error => {
+        showError(error.message);
+      });
   }, []);
   return (
     <View style={styles.page}>
@@ -20,20 +36,17 @@ const Home = ({navigation}) => {
         <Text style={styles.welcome}>
           Hai {fullName}! Mau makan apa hari ini?
         </Text>
-        <Gap height={16} />
+        <Gap height={6} />
         <View style={styles.category}>
-          <MenuCategory
-            category="nasi"
-            onPress={() => navigation.navigate('Menu')}
-          />
-          <MenuCategory category="mie" />
-          <MenuCategory category="fastfood" />
-        </View>
-        <Gap height={10} />
-        <View style={styles.category}>
-          <MenuCategory category="tea and coffee" />
-          <MenuCategory category="juice and soda" />
-          <MenuCategory category="dessert" />
+          {category.map(item => {
+            return (
+              <MenuCategory
+                key={item.key}
+                category={item.category}
+                onPress={() => navigation.navigate('Menu')}
+              />
+            );
+          })}
         </View>
         <Gap height={30} />
         <Card card={DummyCard} />
@@ -84,6 +97,7 @@ const styles = StyleSheet.create({
   category: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    flexWrap: 'wrap',
   },
   label: {
     fontSize: 16,
