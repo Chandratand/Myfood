@@ -1,4 +1,4 @@
-package com.myfood;
+package com.chand.myfood;
 
 import com.facebook.react.ReactActivity;
 import android.os.Bundle;
