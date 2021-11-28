@@ -1,43 +1,61 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
 import {DummyMenu1} from '../../assets';
 import {Header, List} from '../../components';
+import {Fire} from '../../config';
+import {showError} from '../../utils';
 
-const Menu = ({navigation}) => {
+const Menu = ({navigation, route}) => {
+  const itemMenu = route.params;
+  const [listMenu, setListMenu] = useState([]);
+
+  useEffect(() => {
+    console.log('item menu', itemMenu);
+    callMenuByCategory(itemMenu.category);
+  }, []);
+
+  const callMenuByCategory = category => {
+    Fire.database()
+      .ref('menu/')
+      .orderByChild('category')
+      .equalTo(category)
+      .once('value')
+      .then(res => {
+        console.log('data list menu : ', res.val());
+        if (res.val()) {
+          console.log('response : ', res.val());
+          const oldData = res.val();
+          const data = [];
+          Object.keys(oldData).map(item => {
+            data.push({
+              id: item,
+              data: oldData[item],
+            });
+          });
+          console.log('parse List menu : ', data);
+          setListMenu(data);
+        }
+      });
+  };
+
   return (
     <View>
       <Header title="Menu" type="dark" onPress={() => navigation.goBack()} />
       <View style={styles.container}>
         <ScrollView showsVerticalScrollIndicator={false}>
-          <List
-            image={DummyMenu1}
-            title="Nasi Goreng Special"
-            desc="Nasi Goreng special dengan telur"
-            price="Rp 30.000"
-            rate="5.0"
-            onPress={() => navigation.navigate('Detail')}
-          />
-          <List
-            image={DummyMenu1}
-            title="Nasi Goreng Special"
-            desc="Nasi Goreng special dengan telur"
-            price="Rp 30.000"
-            rate="5.0"
-          />
-          <List
-            image={DummyMenu1}
-            title="Nasi Goreng Special"
-            desc="Nasi Goreng special dengan telur"
-            price="Rp 30.000"
-            rate="5.0"
-          />
-          <List
-            image={DummyMenu1}
-            title="Nasi Goreng Special"
-            desc="Nasi Goreng special dengan telur"
-            price="Rp 30.000"
-            rate="5.0"
-          />
+          {listMenu.map(menu => {
+            return (
+              <List
+                key={menu.key}
+                image={{uri: menu.data.image}}
+                title={menu.data.title}
+                price={menu.data.price}
+                desc={menu.data.desc}
+                rate={menu.data.rate}
+                onPress={() => navigation.navigate('Detail', menu.data)}
+              />
+            );
+          })}
         </ScrollView>
       </View>
     </View>

@@ -69,7 +69,7 @@ const Home = ({navigation}) => {
               <MenuCategory
                 key={item.key}
                 category={item.category}
-                onPress={() => navigation.navigate('Menu')}
+                onPress={() => navigation.navigate('Menu', item)}
               />
             );
           })}
