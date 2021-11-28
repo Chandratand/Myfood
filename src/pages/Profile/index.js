@@ -9,17 +9,14 @@ const Profile = ({navigation}) => {
   const [profile, setProfile] = useState({
     fullName: '',
     address: '',
-    photo: ILNullPhoto,
   });
-
+  const [photo, setPhoto] = useState(ILNullPhoto);
   useEffect(() => {
     getData('user').then(res => {
       const data = res;
-      if (res.photo !== 'null') {
-        data.photo = {uri: res.photo};
-      } else {
-        data.photo = ILNullPhoto;
-      }
+      data.photoForDB = res?.photo?.length > 1 ? res.photo : ILNullPhoto;
+      const tempPhoto = res?.photo?.length > 1 ? {uri: res.photo} : ILNullPhoto;
+      setPhoto(tempPhoto);
       setProfile(data);
     });
   }, []);
@@ -41,7 +38,7 @@ const Profile = ({navigation}) => {
         <Gap height={20} />
         {profile.fullName.length > 0 && (
           <UserProfile
-            photo={profile.photo}
+            photo={photo}
             name={profile.fullName}
             address={profile.address}
           />

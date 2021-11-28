@@ -5,24 +5,22 @@ import {colors, fonts, getData} from '../../../utils';
 
 const HomeProfile = ({onPress}) => {
   const [profile, setProfile] = useState({
-    photo: ILNullPhoto,
     fullName: '',
     address: '',
   });
+  const [photo, setPhoto] = useState(ILNullPhoto);
   useEffect(() => {
     getData('user').then(res => {
       const data = res;
-      if (res.photo !== 'null') {
-        data.photo = {uri: res.photo};
-      } else {
-        data.photo = ILNullPhoto;
-      }
+      data.photoForDB = res?.photo?.length > 1 ? res.photo : ILNullPhoto;
+      const tempPhoto = res?.photo?.length > 1 ? {uri: res.photo} : ILNullPhoto;
+      setPhoto(tempPhoto);
       setProfile(data);
     });
   }, []);
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
-      <Image source={profile.photo} style={styles.photo} />
+      <Image source={photo} style={styles.photo} />
       <View>
         <Text style={styles.name}>{profile.fullName}</Text>
         <Text style={styles.address}>{profile.address}</Text>
