@@ -8,7 +8,7 @@ import {colors, fonts, showError, storeData} from '../../utils';
 
 const UploadPhoto = ({navigation, route}) => {
   const {fullName, address, uid} = route.params;
-  const [photoForDB, setPhotoForDB] = useState('');
+  const [photoForDB, setPhotoForDB] = useState('null');
   const [hasPhoto, setHasPhoto] = useState(false);
   const [photo, setPhoto] = useState(ILNullPhoto);
 
@@ -31,6 +31,17 @@ const UploadPhoto = ({navigation, route}) => {
   };
 
   const uploadAndContinue = () => {
+    Fire.database()
+      .ref('users/' + uid + '/')
+      .update({photo: photoForDB});
+
+    const data = route.params;
+    data.photo = photoForDB;
+
+    storeData('user', data);
+    navigation.replace('MainApp');
+  };
+  const skipUploadPhoto = () => {
     Fire.database()
       .ref('users/' + uid + '/')
       .update({photo: photoForDB});
@@ -66,7 +77,7 @@ const UploadPhoto = ({navigation, route}) => {
             title="Skip for this"
             align="center"
             size={16}
-            onPress={() => navigation.replace('MainApp')}
+            onPress={skipUploadPhoto}
           />
         </View>
       </View>
