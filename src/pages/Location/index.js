@@ -12,9 +12,10 @@ const Location = () => {
       .ref('location/')
       .once('value')
       .then(res => {
-        console.log('data : ', res.val());
         if (res.val()) {
-          setLocation(res.val());
+          const data = res.val();
+          const filterData = data.filter(el => el !== null);
+          setLocation(filterData);
         }
       })
       .catch(error => {

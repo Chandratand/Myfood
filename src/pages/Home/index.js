@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
-import {DummyCard, DummyMenu1, DummyMenu2, DummyMenu3} from '../../assets';
+import {DummyCard} from '../../assets';
 import {Card, Gap, HomeProfile, List, MenuCategory} from '../../components';
-import {colors, fonts, getData} from '../../utils';
 import {Fire} from '../../config';
+import {colors, fonts, getData} from '../../utils';
 
 const Home = ({navigation}) => {
   const [fullName, setFullName] = useState('');
@@ -22,9 +22,10 @@ const Home = ({navigation}) => {
       .limitToLast(3)
       .once('value')
       .then(res => {
-        console.log('Favorite Menu : ', res.val());
         if (res.val()) {
-          setFavoriteMenu(res.val());
+          const data = res.val();
+          const filterData = data.filter(el => el !== null);
+          setFavoriteMenu(filterData);
         }
       })
       .catch(error => {
@@ -34,7 +35,6 @@ const Home = ({navigation}) => {
 
   const getUserFullName = () => {
     getData('user').then(res => {
-      console.log('data user : ', res);
       setFullName(res.fullName);
     });
   };
@@ -44,9 +44,10 @@ const Home = ({navigation}) => {
       .ref('category_menu/')
       .once('value')
       .then(res => {
-        console.log('data : ', res.val());
         if (res.val()) {
-          setCategory(res.val());
+          const data = res.val();
+          const filterData = data.filter(el => el !== null);
+          setCategory(filterData);
         }
       })
       .catch(error => {

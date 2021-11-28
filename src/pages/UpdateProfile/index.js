@@ -27,9 +27,6 @@ const UpdateProfile = ({navigation}) => {
   }, []);
 
   const update = () => {
-    console.log('profile: ', profile);
-    console.log('new Password : ', password);
-
     if (password.length > 0) {
       if (password.length < 6) {
         showError('Password Kurang dari 6 Karakter');
@@ -62,7 +59,6 @@ const UpdateProfile = ({navigation}) => {
       .ref(`users/${profile.uid}/`)
       .update(data)
       .then(() => {
-        console.log('success : ', data);
         storeData('user', data).then(() => {
           navigation.replace('MainApp');
         });
@@ -83,12 +79,9 @@ const UpdateProfile = ({navigation}) => {
     launchImageLibrary(
       {quality: 0.5, maxWidth: 200, maxHeight: 200, includeBase64: true},
       response => {
-        console.log('response : ', response);
         if (response.didCancel || response.error) {
           showError('Ooppss anda tidak memilih fotonya');
         } else {
-          console.log('response getImage: ', response);
-
           const source = {uri: response.assets[0].uri};
           setProfile({
             ...profile,

@@ -10,20 +10,17 @@ const Login = ({navigation}) => {
   const dispatch = useDispatch();
 
   const login = () => {
-    console.log('form : ', form);
     dispatch({type: 'SET_LOADING', value: true});
 
     Fire.auth()
       .signInWithEmailAndPassword(form.email, form.password)
       .then(res => {
-        console.log('success : ', res);
         dispatch({type: 'SET_LOADING', value: false});
         setForm('reset');
         Fire.database()
           .ref(`users/${res.user.uid}/`)
           .once('value')
           .then(resDB => {
-            console.log('data user : ', resDB.val());
             if (resDB.val()) {
               storeData('user', resDB.val());
               navigation.replace('MainApp');
@@ -31,7 +28,6 @@ const Login = ({navigation}) => {
           });
       })
       .catch(error => {
-        console.log('error : ', error);
         dispatch({type: 'SET_LOADING', value: false});
         showError(error.message);
       });

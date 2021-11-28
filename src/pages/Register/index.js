@@ -15,7 +15,6 @@ const Register = ({navigation}) => {
   const dispatch = useDispatch();
 
   const onContinue = () => {
-    console.log(form);
     dispatch({type: 'SET_LOADING', value: true});
     Fire.auth()
       .createUserWithEmailAndPassword(form.email, form.password)
@@ -37,13 +36,10 @@ const Register = ({navigation}) => {
         dispatch({type: 'SET_LOADING', value: false});
 
         navigation.navigate('UploadPhoto', data);
-
-        console.log('register success : ', success);
       })
       .catch(error => {
         const errorMessage = error.message;
         showError(errorMessage);
-        console.log('Error register : ', errorMessage);
         dispatch({type: 'SET_LOADING', value: false});
       });
   };
