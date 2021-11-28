@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
 import {Header, List} from '../../components';
 import {Fire} from '../../config';
+import {colors} from '../../utils';
 
 const Menu = ({navigation, route}) => {
   const itemMenu = route.params;
@@ -34,7 +35,7 @@ const Menu = ({navigation, route}) => {
   };
 
   return (
-    <View>
+    <View style={styles.page}>
       <Header title="Menu" type="dark" onPress={() => navigation.goBack()} />
       <View style={styles.container}>
         <ScrollView showsVerticalScrollIndicator={false}>
@@ -60,6 +61,10 @@ const Menu = ({navigation, route}) => {
 export default Menu;
 
 const styles = StyleSheet.create({
+  page: {
+    flex: 1,
+    backgroundColor: colors.white,
+  },
   container: {
     paddingHorizontal: 16,
   },
