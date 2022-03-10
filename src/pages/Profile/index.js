@@ -1,7 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {Provider} from 'react-native-paper';
 import {ILNullPhoto} from '../../assets';
-import {Gap, MiniList, UserProfile} from '../../components';
+import {
+  BottomSheet,
+  BottomSheetModal,
+  Gap,
+  MiniList,
+  UserProfile,
+} from '../../components';
 import {Fire} from '../../config';
 import {colors, fonts, getData, showError} from '../../utils';
 
@@ -31,6 +38,8 @@ const Profile = ({navigation}) => {
         showError(error.message);
       });
   };
+
+  const [show, setShow] = useState(false);
   return (
     <View style={styles.page}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -62,6 +71,7 @@ const Profile = ({navigation}) => {
           name="Give Us Rate"
           desc="On Google Play"
           type="next"
+          onPress={() => setShow(true)}
         />
         <MiniList
           icon="help"
@@ -71,6 +81,12 @@ const Profile = ({navigation}) => {
           onPress={signOut}
         />
       </ScrollView>
+      <BottomSheetModal show={show} close={() => setShow(false)}>
+        <View
+          style={{width: 1000, width: 1000, flex: 1, backgroundColor: 'pink'}}>
+          <Text>Hello wolesda</Text>
+        </View>
+      </BottomSheetModal>
     </View>
   );
 };

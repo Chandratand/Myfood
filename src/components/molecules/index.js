@@ -7,6 +7,8 @@ import UserProfile from './UserProfile';
 import MiniList from './MiniList';
 import List from './List';
 import Loading from './Loading';
+import BottomSheet from './BottomSheet';
+import BottomSheetModal from './BottomSheetModal';
 
 export {
   Header,
@@ -18,4 +20,6 @@ export {
   MiniList,
   List,
   Loading,
+  BottomSheet,
+  BottomSheetModal,
 };
